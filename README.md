@@ -66,7 +66,7 @@ You should modify ports at [docker-compose file](docker-compose-production.yml) 
 
 ### Usage instructions
 
-You can point your browser to: *http://Instance's Internet IP:9007*  
+You can point your browser to: *`http://Instance's Internet IP:9007`*  
 
 The following is the information that may be needed during use
 

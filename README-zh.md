@@ -12,7 +12,7 @@
 
 安装本项目，确保符合如下的条件（[详细参考](https://www.redmine.org/projects/redmine/wiki/RedmineInstall#Requirements)）：
 
-* **操作系统**: Red Hat, CentOS, Debian, Ubuntu 等主流 Linux 操作系统
+* **操作系统**: Red Hat, CentOS, Debian, Ubuntu 等主流 Linux等 操作系统
 * **公有云**: AWS, Azure, Google Cloud, 阿里云, 腾讯云, 华为云等20多个全球主流云
 * **私有云**: KVM, VMware, VirtualBox, OpenStack 等主流虚拟化架构
 * **CPU架构**: Linux x86-64, ARM 32/64, Windows x86-64, IBM POWER8, x86/i686
@@ -71,7 +71,7 @@ sudo docker-compose -f docker-compose-production.yml up -d
 
 ### 使用说明
 
-启动应用后，本地浏览器访问 URL: *http://服务器公网IP:9007* 进入应用。  
+启动应用后，本地浏览器访问 URL: *`http://服务器公网IP:9007`* 进入应用。  
 
 下面是使用过程中可能需要的信息
 

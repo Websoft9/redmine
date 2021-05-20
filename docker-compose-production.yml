@@ -2,7 +2,7 @@ version: '3.8'
 services:
 
   redmine:
-    image: redmine
+    image: redmine:$APP_VERSION
     container_name: $APP_CONTAINER_NAME
     restart: always
     ports:

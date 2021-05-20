@@ -1,44 +1,39 @@
-# add this file
-# default MySQL root password is 123456
-# default remine user admin, password admin
-
 version: '3.8'
-
 services:
 
   redmine:
     image: redmine
-    container_name: redmine
+    container_name: $APP_CONTAINER_NAME
     restart: always
     ports:
-     - 9007:3000
+     - $APP_PORT:3000
     volumes: 
-     - ./volumes/data/:/usr/src/redmine/files
-     - ./volumes/plugins:/usr/src/redmine/plugins
-     - ./volumes/themes:/usr/src/redmine/public/themes
-     - ./volumes/config/configuration.yml:/usr/src/redmine/config/configuration.yml
+     - VOLUMES_PATH_PREFIX/data/:/usr/src/redmine/files
+     - VOLUMES_PATH_PREFIX/plugins:/usr/src/redmine/plugins
+     - VOLUMES_PATH_PREFIX/themes:/usr/src/redmine/public/themes
+     - VOLUMES_PATH_PREFIX/config/configuration.yml:/usr/src/redmine/config/configuration.yml
     environment:
-      REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: 123456
+      REDMINE_DB_MYSQL: $DB_MYSQL_HOST
+      REDMINE_DB_PASSWORD: $DB_MYSQL_PASSWORD
       REDMINE_SECRET_KEY_BASE: supersecretkey
       REDMINE_PLUGINS_MIGRATE: "true"
 
   db:
-    image: mysql:5.7
-    container_name: redmine-mysql
+    image: mysql:$DB_MYSQL_VERSION
+    container_name: $APP_CONTAINER_NAME-mysql
     restart: always
     ports:
-     - 3306:3306
+     - $DB_MYSQL_PORT:3306
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
-     - ./volumes/mysql_config/conf.d:/etc/mysql/conf.d
-     - ./volumes/mysql_data:/var/lib/mysql
-     - ./volumes/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+     - VOLUMES_PATH_PREFIX/mysql_config/conf.d:/etc/mysql/conf.d
+     - VOLUMES_PATH_PREFIX/mysql_data:/var/lib/mysql
+     - VOLUMES_PATH_PREFIX/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     environment:
-      MYSQL_ROOT_PASSWORD: 123456
-      MYSQL_DATABASE: redmine
+      MYSQL_ROOT_PASSWORD: $DB_MYSQL_PASSWORD
+      MYSQL_DATABASE: $DB_MYSQL_NAME
 
 networks:
   default:
-      name: "apps"
+      name: "$APP_NETWORK"
 

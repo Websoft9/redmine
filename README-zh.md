@@ -61,7 +61,7 @@ sudo systemctl start docker
 ```
 git clone --depth=1 https://github.com/Websoft9/docker-redmine
 cd docker-redmine
-sudo docker-compose -f docker-compose-production.yml up -d
+sudo docker-compose -f docker-compose-production.yml --env-file .env_all up -d
 ```
 
 ### 常见问题
